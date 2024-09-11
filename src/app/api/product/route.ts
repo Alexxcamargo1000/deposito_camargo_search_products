@@ -33,36 +33,36 @@ export async function GET(request: Request) {
   // const data: data[] = xlsx.utils.sheet_to_json(sheet);
 
 
-  const workbook = new Excel.Workbook();
+  // const workbook = new Excel.Workbook();
 
-  workbook.xlsx.readFile(directoryPath).then(data => data.eachSheet( (sheet) => {
-    sheet.eachRow(async (row, rowIndex)=> {
-      if(rowIndex > 1 ) {
-        const line = row.values as Array<any>;
+  // workbook.xlsx.readFile(directoryPath).then(data => data.eachSheet( (sheet) => {
+  //   sheet.eachRow(async (row, rowIndex)=> {
+  //     if(rowIndex > 1 ) {
+  //       const line = row.values as Array<any>;
 
-        const name = String(line[3]).trim()
-        const codProduct = String(line[2]).trim()
-        const price = String(line[5]).trim()
-        const unit = String(line[4]).trim()
-        try {
-          await prisma.product.create({
-            data: {
-              name: name,
-              codProduct: codProduct,
-              price: price,
-              unit: unit,
-              priceInCents: Number(price) * 100,
-              updateAt: new Date()
+  //       const name = String(line[3]).trim()
+  //       const codProduct = String(line[2]).trim()
+  //       const price = String(line[5]).trim()
+  //       const unit = String(line[4]).trim()
+  //       try {
+  //         await prisma.product.create({
+  //           data: {
+  //             name: name,
+  //             codProduct: codProduct,
+  //             price: price,
+  //             unit: unit,
+  //             priceInCents: Number(price) * 100,
+  //             updateAt: new Date()
     
-            },
-          });
-        } catch (err) {
-          console.error(`Erro ao inserir dados do produto: ${line[2]}:`, err);
-        }
+  //           },
+  //         });
+  //       } catch (err) {
+  //         console.error(`Erro ao inserir dados do produto: ${line[2]}:`, err);
+  //       }
 
-      }
-    })
-  })) 
+  //     }
+  //   })
+  // })) 
 
 
 
