@@ -3,17 +3,20 @@ import Image from "next/image";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 export default async function Search({ params }: { params: { search: string } }) {
-  
+  const search = decodeURIComponent(params.search)
   const products = await prisma.product.findMany({
     orderBy: {
       name: 'asc'
     },
     where: {
       name: {
-        contains: params.search
+        contains: search.toUpperCase()
       }
     }
   })
+
+  console.log(products);
+  
 
   function formattedPriceInCents(priceInCents: number) {
     return (priceInCents / 100).toLocaleString('pt-BR', {
@@ -36,7 +39,7 @@ export default async function Search({ params }: { params: { search: string } })
       
 
       <div className="mt-16 mb-8  m-auto flex items-center justify-between max-w-3xl">
-        <span className="text-2xl font-semibold">Busca produtos: {params.search}</span>
+        <span className="text-2xl font-semibold">Busca produtos: {search}</span>
         <Link href={'/'} className="px-2 py-1 bg-muted-foreground text-muted rounded">voltar</Link>
       </div>
 
