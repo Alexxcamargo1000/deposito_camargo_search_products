@@ -12,7 +12,7 @@ import Image from "next/image";
 import { SearchProduct } from "@/components/searchProduct";
 import { Phone } from 'lucide-react'
 import { Button } from "@/components/ui/button";
-import { getProduct } from "@/actions/getProducts";
+
 export default async function Home() {
 
   const products = await prisma.product.findMany({
@@ -39,7 +39,6 @@ export default async function Home() {
         </div>
       </div>
 
-      <Button onClick={getProduct}>Produtos</Button>
       <div className="flex max-w-screen-md m-auto flex-col items-center mt-10">
         <h1 className="text-4xl font-black ">Encontre nossos preços.</h1>
         <p className="text-xl text-zinc-700 m-2">Encontre as melhores opções com o custo-benefício que você procura.</p>
