@@ -43,8 +43,9 @@ export default async function Search({ params }: { params: { search: string } })
           <TableCaption>lista de produtos</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">cod produto</TableHead>
+              <TableHead className="">cod produto</TableHead>
               <TableHead className="w-full">nome</TableHead>
+              <TableHead className="w-16 max-md:sr-only  md:table-cell">Unidade</TableHead>
               <TableHead className="w-[200px]">preço</TableHead>
             </TableRow>
           </TableHeader>
@@ -52,8 +53,9 @@ export default async function Search({ params }: { params: { search: string } })
 
             {products.map(product => (
               <TableRow key={product.id}>
-                <TableCell>{product.codProduct}</TableCell>
-                <TableCell>{product.name}</TableCell>
+                <TableCell className="text-xs">{product.codProduct}</TableCell>
+                <TableCell className="w-full text-xs md:text-base">{product.name}</TableCell>
+                <TableCell className="w-16 max-md:sr-only  md:table-cell">{product.unit}</TableCell>
                 <TableCell className="font-bold">{formattedPriceInCents(product.priceInCents)}</TableCell>
               </TableRow>
             ))}

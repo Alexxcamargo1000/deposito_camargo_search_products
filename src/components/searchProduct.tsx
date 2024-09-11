@@ -15,7 +15,7 @@ export function SearchProduct() {
   }
   
   return (
-    <form className="mt-16 w-6/12 flex " onSubmit={handleSubmit}>
+    <form className="mt-16 w-full  flex md:w-6/12" onSubmit={handleSubmit}>
       <Input id="input" className="rounded-none rounded-l" value={search} onChange={(e) => setSearch(e.target.value) } />
       <Button 
         className={ search === '' 
