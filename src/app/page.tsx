@@ -64,9 +64,9 @@ export default async function Home() {
             {products.map(product => (
               <TableRow key={product.id}>
                 <TableCell className="text-xs">{product.codProduct}</TableCell>
-                <TableCell  className="md:w-full max-w-40 text-pretty text-xs md:text-base">{product.name}</TableCell>
+                <TableCell  className="md:w-full max-w-36 text-pretty text-xs md:text-base">{product.name}</TableCell>
                 <TableCell className="w-16 max-md:sr-only  md:table-cell">{product.unit}</TableCell>
-                <TableCell className="font-bold">{formattedPriceInCents(product.priceInCents)}</TableCell>
+                <TableCell className="font-bold max-w-fit text-xs">{formattedPriceInCents(product.priceInCents)}</TableCell>
               </TableRow>
             ))}
 
