@@ -1,5 +1,3 @@
-
-import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
 import {
   Table,
@@ -11,9 +9,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import Image from "next/image";
-import {  Plus } from "lucide-react";
 import { SearchProduct } from "@/components/searchProduct";
-
+import { Phone } from 'lucide-react'
 export default async function Home({
   searchParams
 }: {
@@ -30,8 +27,7 @@ export default async function Home({
   })
 
 
-  console.log(searchParams);
-  
+
 
   function formattedPriceInCents(priceInCents: number) {
     return (priceInCents / 100).toLocaleString('pt-BR', {
@@ -47,19 +43,19 @@ export default async function Home({
         <Image src={'/logoDeposito.png'} alt="" width={200} height={100} quality={100} />
 
         <div className="flex gap-4">
-          <a href="" className="px-4 py-3 bg-zinc-100 rounded hover:bg-zinc-200 transition-colors">Home</a>
-          <a href="" className="px-4 py-3 bg-zinc-100 rounded hover:bg-zinc-200 transition-colors">Produtos</a>
+          <a target="_blank" href="https://wa.me/1533941890" className="px-4 py-3 bg-zinc-100 flex gap-1 rounded hover:bg-zinc-200 transition-colors"> <Phone className="text-green-500" /> WhatsApp</a>
         </div>
       </div>
+
 
       <div className="flex max-w-screen-md m-auto flex-col items-center mt-10">
         <h1 className="text-4xl font-black ">Encontre nossos preços.</h1>
         <p className="text-xl text-zinc-700 m-2">Encontre as melhores opções com o custo-benefício que você procura.</p>
         <span className="text-sm text-zinc-500">Os preços não podem estar corretos essa é so uma base para pesquisa do <strong>Deposito Camargo</strong></span>
 
-        <div className="mt-16 w-6/12 flex ">
-         <SearchProduct products={products} />
-        </div>
+
+         <SearchProduct/>
+
       </div>
 
       <div className="mt-16 max-w-3xl m-auto">
@@ -69,8 +65,8 @@ export default async function Home({
             <TableRow>
               <TableHead className="w-[100px]">cod produto</TableHead>
               <TableHead className="w-full">nome</TableHead>
+              <TableHead className="w-[100px]">Unidade</TableHead>
               <TableHead className="w-[200px]">preço</TableHead>
-              {/* <TableHead className="w-[100px]"></TableHead> */}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -79,8 +75,8 @@ export default async function Home({
               <TableRow key={product.id}>
                 <TableCell>{product.codProduct}</TableCell>
                 <TableCell>{product.name}</TableCell>
+                <TableCell>un</TableCell>
                 <TableCell className="font-bold">{formattedPriceInCents(product.priceInCents)}</TableCell>
-                {/* <TableCell><Button variant={'outline'}><Plus /></Button></TableCell> */}
               </TableRow>
             ))}
 

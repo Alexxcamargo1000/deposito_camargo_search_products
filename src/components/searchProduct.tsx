@@ -1,19 +1,31 @@
+'use client'
 import { Search } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Product } from "@prisma/client";
+import Link from "next/link";
+import { ComponentProps, FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
-export interface searchProductProps {
-  products: Product[]
-}
-
-export function SearchProduct({
-  products
-}: searchProductProps) {
+export function SearchProduct() {
+  const [search, setSearch] = useState('')
+  console.log(search === '');
+  const router = useRouter()
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+   router.push(`/busca/${search}`)
+  }
+  
   return (
-    <>
-      <Input className="rounded-none rounded-l" />
-      <Button className="rounded-none rounded-r"><Search /></Button>
-    </>
+    <form className="mt-16 w-6/12 flex " onSubmit={handleSubmit}>
+      <Input id="input" className="rounded-none rounded-l" value={search} onChange={(e) => setSearch(e.target.value) } />
+      <Button 
+        className={ search === '' 
+          ? 'pointer-events-none cursor-not-allowed bg-primary/50 rounded-none rounded-r'
+          : 'rounded-none rounded-r' } 
+      >
+        <Search />
+      </Button>
+    </form>
   )
 }

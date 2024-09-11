@@ -20,7 +20,7 @@ interface data {
 export async function GET(request: Request) {
 
 
-  const directoryPath = path.join(cwd(), 'listaProdutos.xlsx' )
+   const directoryPath = path.join(cwd(), 'lista-produtos.xlsx' )
 
   // const productList = xlsx.(directoryPath);
   // console.log(productList);
@@ -40,27 +40,31 @@ export async function GET(request: Request) {
       if(rowIndex > 1 ) {
         const line = row.values as Array<any>;
 
-        const name = String(line[2]).trim()
-        const codProduct = String(line[1]).trim()
-        const price = String(line[4]).trim()
+        const name = String(line[3]).trim()
+        const codProduct = String(line[2]).trim()
+        const price = String(line[5]).trim()
+        const unit = String(line[4]).trim()
         try {
           await prisma.product.create({
             data: {
               name: name,
               codProduct: codProduct,
               price: price,
+              unit: unit,
               priceInCents: Number(price) * 100,
               updateAt: new Date()
     
             },
           });
         } catch (err) {
-          console.error(`Erro ao inserir dados do cliente ${line[2]}:`, err);
+          console.error(`Erro ao inserir dados do produto: ${line[2]}:`, err);
         }
 
       }
     })
   })) 
+
+
 
 
   return NextResponse.json({message: 'ok'})

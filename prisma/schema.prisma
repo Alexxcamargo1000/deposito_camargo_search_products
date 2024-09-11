@@ -15,6 +15,7 @@ model Product {
   codProduct   String   @unique @map("cod_product")
   name         String
   price        String
+  unit         String
   priceInCents Int      @map("price_in_cents")
   updateAt     DateTime @map("undate_at")
 
