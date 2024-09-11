@@ -13,23 +13,13 @@ import { SearchProduct } from "@/components/searchProduct";
 import { Phone } from 'lucide-react'
 import { Button } from "@/components/ui/button";
 import { getProduct } from "@/actions/getProducts";
-export default async function Home({
-  searchParams
-}: {
-  searchParams: { skip: string, take: string }
-}) {
+export default async function Home() {
 
-  const countProducts = await prisma.product.count()
   const products = await prisma.product.findMany({
-    // skip: Number(searchParams.skip) || 0,
-    // take: Number(searchParams.take) || 20,
     orderBy: {
       name: 'asc'
     },
   })
-
-
-
 
   function formattedPriceInCents(priceInCents: number) {
     return (priceInCents / 100).toLocaleString('pt-BR', {

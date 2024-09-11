@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 export default async function Search({ params }: { params: { search: string } }) {
   const search = decodeURIComponent(params.search)
+  
   const products = await prisma.product.findMany({
     orderBy: {
       name: 'asc'
@@ -15,7 +16,6 @@ export default async function Search({ params }: { params: { search: string } })
     }
   })
 
-  console.log(products);
   
 
   function formattedPriceInCents(priceInCents: number) {
@@ -29,11 +29,6 @@ export default async function Search({ params }: { params: { search: string } })
     <div className="px-4 max-w-7xl m-auto">
       <div className="py-8 flex items-center justify-between">
         <Image src={'/logoDeposito.png'} alt="" width={200} height={100} quality={100} />
-
-        {/* <div className="flex gap-4">
-          <a href="" className="px-4 py-3 bg-zinc-100 rounded hover:bg-zinc-200 transition-colors"></a>
-          <a href="" className="px-4 py-3 bg-zinc-100 rounded hover:bg-zinc-200 transition-colors"></a>
-        </div> */}
       </div>
 
       

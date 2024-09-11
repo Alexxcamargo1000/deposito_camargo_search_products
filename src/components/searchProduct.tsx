@@ -2,9 +2,7 @@
 import { Search } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Product } from "@prisma/client";
-import Link from "next/link";
-import { ComponentProps, FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export function SearchProduct() {
