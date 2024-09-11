@@ -1,3 +1,4 @@
+
 import prisma from "@/lib/prisma";
 import {
   Table,
@@ -11,7 +12,6 @@ import {
 import Image from "next/image";
 import { SearchProduct } from "@/components/searchProduct";
 import { Phone } from 'lucide-react'
-import { Button } from "@/components/ui/button";
 
 export default async function Home() {
 
@@ -38,7 +38,6 @@ export default async function Home() {
           <a target="_blank" href="https://wa.me/1533941890" className="px-4 py-3 bg-zinc-100 flex gap-1 rounded hover:bg-zinc-200 transition-colors"> <Phone className="text-green-500" /> WhatsApp</a>
         </div>
       </div>
-
       <div className="flex max-w-screen-md m-auto flex-col items-center mt-10">
         <h1 className="text-4xl font-black ">Encontre nossos preços.</h1>
         <p className="text-xl text-zinc-700 m-2">Encontre as melhores opções com o custo-benefício que você procura.</p>
